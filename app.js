@@ -7,6 +7,7 @@ const mongoose = require('mongoose');
 require('dotenv').config();
 
 const PORT = process.env.PORT;
+const DB_URI = process.env.DB
 
 // set-up middleware
 app.use(cors); // use cors to allow cross origin resource sharing to enable fetching from front end
@@ -14,7 +15,7 @@ app.use(bodyParser); // for parsing req.body
 app.use(express.urlencoded({extended : true})); 
 
 // connect to mongodb atlas 
-mongoose.connect(`mongodb+srv://master_pupoy:wi7nB3Tv78go5DJQ@cluster1.zhjgs.mongodb.net/maintsys?retryWrites=true&w=majority`, {
+mongoose.connect(`${DB_URI}`, {
     useUnifiedTopology : true,
     useNewUrlParser : true
 })
