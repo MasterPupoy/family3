@@ -6,13 +6,19 @@ const mongoose = require('mongoose');
 
 require('dotenv').config();
 
+// routes
+const personRoutes = require('./routes/person');
+const familyRoutes = require('./routes/family');
+
 const PORT = process.env.PORT;
-const DB_URI = process.env.DB
+const DB_URI = process.env.DB;
 
 // set-up middleware
-app.use(cors); // use cors to allow cross origin resource sharing to enable fetching from front end
-app.use(bodyParser); // for parsing req.body
+app.use(cors()); // use cors to allow cross origin resource sharing to enable fetching from front end
+app.use(bodyParser.urlencoded({extended : true})); // for parsing req.body
+app.use(bodyParser.json());
 app.use(express.urlencoded({extended : true})); 
+app.use(express.json());
 
 // connect to mongodb atlas 
 mongoose.connect(`${DB_URI}`, {
@@ -24,7 +30,8 @@ mongoose.connection.once('open', () => console.log(`Connected to MongoDB Atlas`)
 
 
 // set up routes
-
+app.use('/person', personRoutes);
+app.use('/family', familyRoutes);
 
 
 

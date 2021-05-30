@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
 const personSchema = new Schema({
-    firstname : {
+    firstname : { 
         type : String,
         default : 'N/a'
     },
@@ -13,11 +13,14 @@ const personSchema = new Schema({
     gender : {
         type : String, 
     },
+    currentFamily_id : {
+        type : String,
+    },
     parents : [{
-        relationship_id : {
+        family_id : {
             type : String,
         },
-        person1 : [{
+        parent1 : {
             Id : {
                 type : String
             },
@@ -27,8 +30,8 @@ const personSchema = new Schema({
             lastname : {
                 type : String
             }
-        }],
-        person2 : [{
+        },
+        parent2 : {
            Id : {
                 type : String
             },
@@ -38,37 +41,21 @@ const personSchema = new Schema({
             lastname : {
                 type : String
             } 
-        }]
+        },
     }],
-    relationships : [{
-        relationship_id : {
+    partner : [{
+        person_id : {
             type : String
         },
-        person1 : [{
-            Id : {
-                type : String
-            },
-            firstname : {
-                type : String
-            },
-            lastname : {
-                type : String
-            }
-        }],
-        person2 : [{
-           Id : {
-                type : String
-            },
-            firstname : {
-                type : String
-            },
-            lastname : {
-                type : String
-            } 
-        }] 
+        firstname : {
+            type : String
+        },
+        lastname : {
+            type : String
+        }
     }],
     children : [{
-        children_id : {
+        child_id : {
             type : String
         },
         firstname : {
@@ -81,7 +68,15 @@ const personSchema = new Schema({
     birthdate : {
         type : Date
     },
+    occupation : {
+        type : String,
+        default : 'N/a'
+    },
+    address : {
+        type : String,
+        default : 'N/a'
+    }
 });
 
 // export person schema
-module.exports = mongoose.model('Person', personSchema)
+module.exports = mongoose.model('Person', personSchema, 'persons');

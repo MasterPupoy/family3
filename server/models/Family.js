@@ -1,8 +1,8 @@
 const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
-const relationshipSchema = new Schema({
-    person1 : [{
+const familySchema = new Schema({
+    parent1 : {
         person_Id : {
             type : String
         }, 
@@ -12,8 +12,8 @@ const relationshipSchema = new Schema({
         lastname : {
             type : String
         }
-    }],
-    person2 : [{
+    },
+    parent2 : {
         person_Id : {
             type : String
         }, 
@@ -23,16 +23,19 @@ const relationshipSchema = new Schema({
         lastname : {
             type : String
         }
-    }],
+    },
     children : [{
         children_id : {
             type : String
         },
         firstname : {
             type : String
+        },
+        lastname : {
+            type : String
         }
-    }]   
+    }]
 });
 
 // export relationship model as Relationship
-module.exports = mogoose.model('Relationship', relationshipSchema);
+module.exports = mongoose.model('Family', familySchema, 'family');
