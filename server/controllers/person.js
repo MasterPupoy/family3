@@ -23,6 +23,13 @@ module.exports.createPerson = (params) => {
    });
 };
 
+// return all persons 
+module.exports.getEveryone = (params) => {
+    return Person.find().then(persons => {
+        return persons;
+    })
+};
+
 // find person 
 module.exports.findPerson = (params) => {
     
@@ -81,7 +88,7 @@ module.exports.addChildren = (params) => {
 
                             return Person.findById(params.children_id).then(person => {
 
-                                person.nuclear_family.push(fam);
+                                person.parents.push(fam);
                                 
                                 // return true if child, family and person was successfully updated
                                 return person.save().then((person, err) => {

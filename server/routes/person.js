@@ -12,6 +12,7 @@ router.get('/find', (req, res) => {
     personController.findPerson(req.body).then(person => res.send(person));
 })
 
+// add child to parent
 router.put('/setChild', (req, res) => {
     let params = {
         parent_id : req.body.parent_id,
@@ -22,6 +23,12 @@ router.put('/setChild', (req, res) => {
     }
     
     personController.addChildren(params).then(modifiedPerson => res.send(modifiedPerson));
+});
+
+// get everyone
+router.get('/everyone', (req, res) => {
+    
+    personController.getEveryone().then(everyone => res.send(everyone));
 })
 
 module.exports = router;

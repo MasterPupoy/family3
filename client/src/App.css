@@ -1,0 +1,19 @@
+.App {
+  background-image: linear-gradient( 94.3deg,  rgba(26,33,64,1) 10.9%, rgba(81,84,115,1) 87.1% );
+  min-height: 100vh;
+}
+
+.sideBar { 
+  width: 200px;
+  position : fixed;
+  top : 0;
+  left : 0;
+  overflow-x: hidden;
+  padding-top: 40px;
+}
+
+.main {
+  margin-left: 200px;
+}
+
+
