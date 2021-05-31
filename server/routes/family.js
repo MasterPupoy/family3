@@ -4,10 +4,9 @@ const familyController = require('../controllers/family');
 // create a family route
 router.post('/create-family', (req, res) => {
     // choose from req headers or body for the parent1 id
-    let parentId = req.headers.authorization || req.body.parent1.id;
     let params = {
         parent1 : {
-            _id : parentId,
+            _id : req.body.parent1.id,
             firstName : req.body.parent1.firstName,
             lastName : req.body.parent1.lastName,
         },

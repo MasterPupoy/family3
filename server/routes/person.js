@@ -8,7 +8,7 @@ router.post('/create', (req, res) => {
 })
 
 // find person route
-router.get('/find', (req, res) => {
+router.post('/find', (req, res) => {
     personController.findPerson(req.body).then(person => res.send(person));
 })
 

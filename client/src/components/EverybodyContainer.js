@@ -35,25 +35,40 @@ export default function DetailsContainer(props) {
                                         <ListGroup.Item>Address : <em>{capitalize(person.address)}</em></ListGroup.Item>
                                     </ListGroup>
                                     <ListGroup horizontal>
-                                    <ListGroup.Item>Parents : </ListGroup.Item>
-                                    {(person.parents.length) ? person.parents.map(parent => {
-                                        return (
-                                        <>
-                                            <ListGroup.Item 
-                                                key={parent.parent1}
-                                            > 
-                                              {capitalize(parent.parent1.firstname)} {capitalize(parent.parent1.lastname)}
-                                            </ListGroup.Item>
-                                            <ListGroup.Item 
-                                                key={parent.parent2}
-                                            > 
-                                                {capitalize(parent.parent2.firstname)} {capitalize(parent.parent2.lastname)}
-                                            </ListGroup.Item>
-                                        </>
-                                        )
-                                    }) : <ListGroup.Item>Unknown</ListGroup.Item>
-                                    }
+                                        <ListGroup.Item>Parents : </ListGroup.Item>
+                                            {(person.parents.length) ? person.parents.map(parent => {
+                                                return (
+                                                <>
+                                                    <ListGroup.Item 
+                                                        key={parent.parent1}
+                                                    > 
+                                                    {capitalize(parent.parent1.firstname)} {capitalize(parent.parent1.lastname)}
+                                                    </ListGroup.Item>
+                                                    <ListGroup.Item 
+                                                        key={parent.parent2}
+                                                    > 
+                                                        {capitalize(parent.parent2.firstname)} {capitalize(parent.parent2.lastname)}
+                                                    </ListGroup.Item>
+                                                </>
+                                                )
+                                            }) : <ListGroup.Item>Unknown</ListGroup.Item>
+                                            }
                                     </ListGroup>
+                                    <ListGroup horizontal>
+                                        <ListGroup.Item>Partner : </ListGroup.Item>
+                                            {(person.partner.length) ? person.partner.map(partner => {
+                                                return (
+                                                <>
+                                                    <ListGroup.Item 
+                                                        key={partner._id}
+                                                    > 
+                                                    {capitalize(partner.firstname)} {capitalize(partner.lastname)}
+                                                    </ListGroup.Item>
+                                                </>
+                                                )
+                                            }) : <ListGroup.Item>None</ListGroup.Item>
+                                            }
+                                        </ListGroup>
                                     <ListGroup variant='flush'>
                                         <span>Children : </span>
                                         {

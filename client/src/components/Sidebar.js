@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Button } from 'react-bootstrap';
 import GlobalModal from './Modal';
 import NewPersonForm from './CreateNewPersonForm';
+import NewFamilyForm from './CreateFamilyForm';
 
 const buttonStyle = {
     margin : '10px',
@@ -22,6 +23,7 @@ export default function Topbar(props) {
     const [familyTreeButton, setFamilyTreeButton] = useState(false);
     
     const [createPersonButton, setCreatePersonButton] = useState(false);
+    const [createFamilyButton, setCreateFamilyButton] = useState(false); 
 
     const [section, setSection] = useState('');
 
@@ -58,8 +60,12 @@ export default function Topbar(props) {
         });
     }
 
-    const handleClose = () => {
+    const handleCloseCreatePersonButton = () => {
         setCreatePersonButton(prevState => !prevState);
+    }
+
+    const handleCloseCreateFamilyButton = () => {
+        setCreateFamilyButton(prevState => !prevState);
     }
 
     const ButtonSelection = () => {
@@ -86,6 +92,7 @@ export default function Topbar(props) {
                 <div>
                     <Button 
                         style={selectionButtonStyle} 
+                        onClick={() => { setCreateFamilyButton(prevState => !prevState)}}
                         variant="secondary">
                             Create Family
                     </Button>
@@ -142,9 +149,15 @@ export default function Topbar(props) {
             </div>
             <GlobalModal 
                 state={createPersonButton} 
-                close={handleClose}
+                close={handleCloseCreatePersonButton}
                 title='Create New Person'
                 form={<NewPersonForm />}
+            />
+            <GlobalModal 
+                state={createFamilyButton}
+                close={handleCloseCreateFamilyButton}
+                title='Create New Family'
+                form={<NewFamilyForm />}
             />
         </div>
     )
