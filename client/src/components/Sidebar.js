@@ -3,36 +3,38 @@ import { Button } from 'react-bootstrap';
 import GlobalModal from './Modal';
 import NewPersonForm from './CreateNewPersonForm';
 import NewFamilyForm from './CreateFamilyForm';
+import SetChildForm from './SetChildForm';
 
 const buttonStyle = {
-    margin : '10px',
-    textAlign : 'center',
-    display : 'block',
-    width : '180px',
-    padding : '10px 0px'
+    margin: '10px',
+    textAlign: 'center',
+    display: 'block',
+    width: '180px',
+    padding: '10px 0px'
 }
 
 const selectionButtonStyle = {
-    borderRadius : '50px',
-    margin : '10px'
+    borderRadius: '50px',
+    margin: '10px'
 }
 
 export default function Topbar(props) {
     const [personButton, setPersonButton] = useState(false);
     const [relationshipButton, setRelationshipButton] = useState(false);
     const [familyTreeButton, setFamilyTreeButton] = useState(false);
-    
+
     const [createPersonButton, setCreatePersonButton] = useState(false);
-    const [createFamilyButton, setCreateFamilyButton] = useState(false); 
+    const [createFamilyButton, setCreateFamilyButton] = useState(false);
+    const [childButton, setChildButton] = useState(false);
 
     const [section, setSection] = useState('');
 
     const handlePersonButton = () => {
         setPersonButton(prevState => !prevState);
         setSection(state => {
-            if (state !== 'person'){
+            if (state !== 'person') {
                 setSection('person');
-            }else{
+            } else {
                 setSection('');
             }
         });
@@ -41,9 +43,9 @@ export default function Topbar(props) {
     const handleRelationshipButton = () => {
         setRelationshipButton(prevState => !prevState);
         setSection(state => {
-            if (state !== 'relationship'){
+            if (state !== 'relationship') {
                 setSection('relationship')
-            }else{
+            } else {
                 setSection('');
             }
         });
@@ -52,9 +54,9 @@ export default function Topbar(props) {
     const handleFamilyButton = () => {
         setFamilyTreeButton(prevState => !prevState);
         setSection(state => {
-            if (state !== 'familyTree'){
+            if (state !== 'familyTree') {
                 setSection('familyTree')
-            }else{
+            } else {
                 setSection('');
             }
         });
@@ -68,55 +70,60 @@ export default function Topbar(props) {
         setCreateFamilyButton(prevState => !prevState);
     }
 
+    const handleCloseSetChildButton = () => {
+        setChildButton(prevState => !prevState);
+    }
+
     const ButtonSelection = () => {
-        if(section === 'person'){
-            return(
+        if (section === 'person') {
+            return (
                 <div>
-                    <Button 
-                        style={selectionButtonStyle} 
-                        onClick={() => setCreatePersonButton(prevState => !prevState)} 
+                    <Button
+                        style={selectionButtonStyle}
+                        onClick={() => setCreatePersonButton(prevState => !prevState)}
                         variant="primary">
-                            Create Person
+                        Create Person
                     </Button>
-                    <Button 
-                        style={selectionButtonStyle} 
+                    <Button
+                        style={selectionButtonStyle}
+                        onClick={() => setChildButton(prevState => !prevState)}
                         variant="primary">
-                            Set Children
+                        Set Children
                     </Button>
                 </div>
             )
         }
 
-        if(section === 'relationship') {
-            return(
+        if (section === 'relationship') {
+            return (
                 <div>
-                    <Button 
-                        style={selectionButtonStyle} 
-                        onClick={() => { setCreateFamilyButton(prevState => !prevState)}}
+                    <Button
+                        style={selectionButtonStyle}
+                        onClick={() => { setCreateFamilyButton(prevState => !prevState) }}
                         variant="secondary">
-                            Create Family
+                        Create Family
                     </Button>
-                    <Button 
-                        style={selectionButtonStyle} 
-                        variant="secondary" 
+                    <Button
+                        style={selectionButtonStyle}
+                        variant="secondary"
                         disabled>
-                            Add Children
+                        Add Children
                     </Button>
                 </div>
             )
         }
 
-        if(section === 'familyTree'){
-           return (
-               <div>
-                    <Button 
-                        style={selectionButtonStyle} 
+        if (section === 'familyTree') {
+            return (
+                <div>
+                    <Button
+                        style={selectionButtonStyle}
                         variant="info">
-                            Choose family
+                        Choose family
                     </Button>
-               </div>
-           ) 
-        }else {
+                </div>
+            )
+        } else {
             return (
                 <div></div>
             )
@@ -125,39 +132,45 @@ export default function Topbar(props) {
 
     return (
         <div>
-            <Button 
-                style={buttonStyle} 
-                variant="primary" 
+            <Button
+                style={buttonStyle}
+                variant="primary"
                 onClick={handlePersonButton}>
-                    Add Person
+                Person
             </Button>
-            <Button 
-                style={buttonStyle} 
-                variant="secondary" 
+            <Button
+                style={buttonStyle}
+                variant="secondary"
                 onClick={handleRelationshipButton}>
-                    Create Relationship
+                Family
             </Button>
-            <Button 
-                style={buttonStyle} 
-                variant="info" 
+            <Button
+                style={buttonStyle}
+                variant="info"
                 onClick={handleFamilyButton}>
-                    View Family Tree
+                View Family Tree
             </Button>
             <hr></hr>
             <div>
-              <ButtonSelection />
+                <ButtonSelection />
             </div>
-            <GlobalModal 
-                state={createPersonButton} 
+            <GlobalModal
+                state={createPersonButton}
                 close={handleCloseCreatePersonButton}
                 title='Create New Person'
                 form={<NewPersonForm />}
             />
-            <GlobalModal 
+            <GlobalModal
                 state={createFamilyButton}
                 close={handleCloseCreateFamilyButton}
                 title='Create New Family'
                 form={<NewFamilyForm />}
+            />
+            <GlobalModal
+                state={childButton}
+                close={handleCloseSetChildButton}
+                title='Set Children'
+                form={<SetChildForm />}
             />
         </div>
     )

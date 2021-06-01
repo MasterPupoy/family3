@@ -21,5 +21,17 @@ router.post('/create-family', (req, res) => {
     familyController.createFamily(params).then(family => res.send(family));
 })
 
+// get all families
+router.get('/families', (req, res) => {
+    familyController.getFamilies().then(families => res.send(families));
+});
+
+// get a family 
+router.get('/:id', (req, res) => {
+    let familyId = req.params
+
+    familyController.lookForFamily(familyId).then(family => res.send(family));
+});
+
 
 module.exports = router;

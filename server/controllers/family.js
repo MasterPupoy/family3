@@ -6,6 +6,7 @@ const errCatcher = require('../helpers');
 // to parent2 partner array and parent2 info to parent1 partner array
 module.exports.createFamily = (params) => {
 
+    console.log(params)
     let newFamily = new Family({
         parent1 : {
             person_Id : params.parent1._id,
@@ -37,6 +38,7 @@ module.exports.createFamily = (params) => {
             errCatcher(err);
         }else {
             return Person.findById(params.parent2._id).then(person => {
+                
                 person.partner.push(partner1);
                 
                 // return true if operation is successful
@@ -54,6 +56,30 @@ module.exports.createFamily = (params) => {
                 });
             });
         };
+    });
+};
+
+// get all families
+module.exports.getFamilies = (params) => {
+
+    return Family.find().then((family, err) => {
+        if(err){
+            errCatcher(err)
+        }
+
+        return family
+    });
+};
+
+// get family
+module.exports.lookForFamily = (params) => {
+
+    return Family.findById(params.id).then((family, err) => {
+        if(err){
+            console.log(err)
+        }
+        
+        return family;
     });
 };
 

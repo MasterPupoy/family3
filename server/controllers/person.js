@@ -33,6 +33,7 @@ module.exports.getEveryone = (params) => {
 // find person 
 module.exports.findPerson = (params) => {
     
+    console.log(params)
     return Person.find({
         firstname : params.firstName,
         lastname : params.lastName
