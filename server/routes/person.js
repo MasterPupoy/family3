@@ -33,7 +33,7 @@ router.get('/everyone', (req, res) => {
 
 router.get('/:userId', (req, res) => {
 
-    let userId = req.headers.authorization;
+    let userId = req.params.userId;
 
     personController.getPersonById(userId).then(person => res.send(person));
 });

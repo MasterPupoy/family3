@@ -59,7 +59,6 @@ export default function DetailsContainer(props) {
 
     }, []);
 
-    console.log(everybody)
 
     return (
         <Container fluid>
@@ -68,7 +67,7 @@ export default function DetailsContainer(props) {
                     {everybody.map(person => {
                     return (
                             <div>
-                                <Card key={person._id} style={cardStyle}>
+                                <Card key={everybody.indexOf(person)} style={cardStyle}>
                                     <Card.Body>
                                         <Card.Title>{capitalize(person.firstname)} {capitalize(person.lastname)}</Card.Title>
                                         <Card.Subtitle className="mb-2 text-muted"><em>{person.occupation}</em></Card.Subtitle>

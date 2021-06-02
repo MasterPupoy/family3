@@ -6,7 +6,6 @@ const errCatcher = require('../helpers');
 // to parent2 partner array and parent2 info to parent1 partner array
 module.exports.createFamily = (params) => {
 
-    console.log(params)
     let newFamily = new Family({
         parent1 : {
             person_Id : params.parent1._id,
@@ -78,8 +77,6 @@ module.exports.lookForFamily = (params) => {
         if(err){
             console.log(err)
         }
-        
         return family;
     });
 };
-

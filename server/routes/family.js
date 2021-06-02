@@ -33,5 +33,14 @@ router.get('/:id', (req, res) => {
     familyController.lookForFamily(familyId).then(family => res.send(family));
 });
 
+router.get('/fam', (req, res) => {
+    let params = {
+        firstName : req.body.firstname,
+        lastName : req.body.lastname
+    };
+
+    familyController.getFamilyByName(params).then(family => res.send(family));
+});
+
 
 module.exports = router;
