@@ -110,5 +110,19 @@ module.exports.addChildren = (params) => {
     });
 };
 
+// get person by id 
+module.exports.getPersonById = (params) => {
+
+    return Person.findById(params).then((person, err) => {
+        if (err){
+            console.log(err);
+        };
+
+        if(person){
+            return person;
+        };
+    });
+};
+
 
 

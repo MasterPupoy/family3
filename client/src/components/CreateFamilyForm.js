@@ -111,7 +111,7 @@ export default function NewFamilyForm() {
 
                 {everybody.map(person => {
                     return (
-                        <Card>
+                        <Card key={everybody.indexOf(person)}>
                             <Accordion.Toggle as={Card.Header} eventKey={everybody.indexOf(person).toString()}>
                                 {capitalize(person.firstname)} {capitalize(person.lastname)}
                             </Accordion.Toggle>

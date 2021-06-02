@@ -29,6 +29,13 @@ router.put('/setChild', (req, res) => {
 router.get('/everyone', (req, res) => {
     
     personController.getEveryone().then(everyone => res.send(everyone));
-})
+});
+
+router.get('/:userId', (req, res) => {
+
+    let userId = req.headers.authorization;
+
+    personController.getPersonById(userId).then(person => res.send(person));
+});
 
 module.exports = router;
